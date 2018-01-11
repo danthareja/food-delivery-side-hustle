@@ -3,7 +3,7 @@ require('dotenv').config()
 const { router, post, options } = require('microrouter')
 const cors = require('micro-cors')()
 
-const { twilio, numbers } = require('./controllers')
+const { twilio, users } = require('./controllers')
 const db = require('./db');
 
 db
@@ -22,6 +22,6 @@ module.exports = router(
   post('/twilio/send', cors(twilio.send)),
   options('/twilio/receive', cors()),
   post('/twilio/receive', cors(twilio.receive)),
-  options('/api/numbers', cors()),
-  post('/api/numbers', cors(numbers.create)),
+  options('/api/users', cors()),
+  post('/api/users', cors(users.create)),
 )

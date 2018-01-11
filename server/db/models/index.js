@@ -1,1 +1,1 @@
-module.exports.PhoneNumber = require('./PhoneNumber')
+module.exports.User = require('./User')

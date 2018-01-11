@@ -3,10 +3,18 @@ const PNF = require('google-libphonenumber').PhoneNumberFormat
 const phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance()
 
 const schema = new mongoose.Schema({
-  value: {
+  name: {
     type: String,
-    required: true,
+    required: [true, 'is required']
+  },
+  location: {
+    type: String,
+    required: [true, 'is required']
+  },
+  phone: {
+    type: String,
     unique: true,
+    required: [true, 'is required'],
     validate: {
       validator: function(value) {
         const number = phoneUtil.parseAndKeepRawInput(value, 'US')
@@ -18,9 +26,9 @@ const schema = new mongoose.Schema({
 })
 
 schema.pre('save', function(next) {
-  const number = phoneUtil.parseAndKeepRawInput(this.value, 'US')
-  this.value = phoneUtil.format(number, PNF.E164)
+  const number = phoneUtil.parseAndKeepRawInput(this.phone, 'US')
+  this.phone = phoneUtil.format(number, PNF.E164)
   return next()
 })
 
-module.exports = mongoose.model('PhoneNumber', schema)
+module.exports = mongoose.model('User', schema)
