@@ -25,15 +25,15 @@ module.exports.send = async (req, res) => {
     })
   }
 
-  const numbers = await db.models.PhoneNumber
+  const users = await db.models.User
     .find()
     .lean(true)
     .exec()
 
-  await Promise.all(numbers.map(number => {
+  await Promise.all(users.map(user => {
     return twilio.messages.create({
       body: message,
-      to: number.value,
+      to: user.phone,
       from: process.env.TWILIO_PHONE_NUMBER
     })
   }))
