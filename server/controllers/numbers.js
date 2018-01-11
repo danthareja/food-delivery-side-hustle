@@ -1,14 +1,12 @@
-const { send } = require('micro')
-const parse = require('urlencoded-body-parser')
+const { send, json } = require('micro')
 const db = require('../db')
 
 module.exports.create = async (req, res) => {
-  const { value } = await parse(req)
+  const { value } = await json(req)
 
   try {
     await db.models.PhoneNumber.create({ value })
   } catch (e) {
-    console.error(e)
     return send(res, 422, {
       error: e.message
     })
