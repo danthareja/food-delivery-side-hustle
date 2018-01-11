@@ -1,14 +1,27 @@
 require('dotenv').config()
 
-const { router, post } = require('microrouter')
+const { router, post, options } = require('microrouter')
+const cors = require('micro-cors')()
 
-const db = require('./db');
 const { twilio, numbers } = require('./controllers')
+const db = require('./db');
 
-db.connect();
+db
+  .connect(process.env.MONGODB_URI)
+  .then(() => console.log(`Connected to MongoDB at ${process.env.MONGODB_URI}`))
+  .catch(e => {
+    console.error(
+      `Fatal error connecting to MongoDB at ${process.env.MONGODB_URI}`
+    );
+    console.error(e);
+    process.exit(1);
+  });
 
 module.exports = router(
-  post('/twilio/send', twilio.send),
-  post('/twilio/receive', twilio.receive),
-  post('/api/numbers', numbers.create)
+  options('/twilio/send', cors()),
+  post('/twilio/send', cors(twilio.send)),
+  options('/twilio/receive', cors()),
+  post('/twilio/receive', cors(twilio.receive)),
+  options('/api/numbers', cors()),
+  post('/api/numbers', cors(numbers.create)),
 )
