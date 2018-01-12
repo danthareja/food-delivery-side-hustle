@@ -1,7 +1,5 @@
-const { send, json } = require('micro')
-const urlencoded = require('urlencoded-body-parser')
 const Twilio = require('twilio')
-const db = require('../db');
+const db = require('../db')
 
 const twilio = new Twilio(
   process.env.TWILIO_ACCOUNT_SID,
@@ -9,7 +7,6 @@ const twilio = new Twilio(
 )
 
 module.exports.receive = async (req, res) => {
-  const body = await urlencoded(req)
   const twiml = new Twilio.twiml.MessagingResponse()
   twiml.message('The Robots are coming! Head for the hills!')
   res.writeHead(200, { 'Content-Type': 'text/xml' })
@@ -17,10 +14,10 @@ module.exports.receive = async (req, res) => {
 }
 
 module.exports.send = async (req, res) => {
-  const { message } = await json(req)
+  const { message } = req.body
 
   if (!message) {
-    return send(res, 422, {
+    return res.status(422).json({
       error: 'Invalid message'
     })
   }
@@ -38,7 +35,5 @@ module.exports.send = async (req, res) => {
     })
   }))
 
-  return {
-    error: null
-  }
+  res.json({ error: null })
 }

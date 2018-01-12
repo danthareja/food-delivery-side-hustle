@@ -1,0 +1,18 @@
+{
+  "name": "unincorporated-food-inc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "google-libphonenumber": "^3.0.10",
+    "mongoose": "^4.13.9",
+    "twilio": "^3.11.0"
+  }
+}
