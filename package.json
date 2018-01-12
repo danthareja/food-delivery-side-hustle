@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "postinstall": "cd client && yarn && yarn run build && cd ..",
     "start": "node index.js"
   },
   "dependencies": {
