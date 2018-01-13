@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import './Form.css'
 
 const INITIAL_STATE = {
+  info: null,
   errors: null,
   form: {
     name: '',
@@ -30,7 +31,9 @@ class Form extends Component {
           errors: json.errors
         })
       } else {
-        this.setState(INITIAL_STATE)
+        this.setState(Object.assign(INITIAL_STATE, {
+          info: 'Great success!'
+        }))
       }
     })
   }
@@ -49,22 +52,30 @@ class Form extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="form__input">
             <label>Name: </label>
-            <input type="text" name="name" placeholder="Dan" value={this.state.form.name} onChange={this.handleChange}/>
+            <input type="text" name="name" value={this.state.form.name} onChange={this.handleChange}/>
           </div>
           <div className="form__input">
             <label>Location: </label>
-            <input type="text" name="location" placeholder="molo #3" value={this.state.form.location} onChange={this.handleChange}/>
+            <input type="text" name="location" value={this.state.form.location} onChange={this.handleChange}/>
           </div>
           <div className="form__input">
             <label>Phone: </label>
-            <input type="tel" name="phone" placeholder="406-555-5555" value={this.state.form.phone} onChange={this.handleChange}/>
+            <input type="tel" name="phone" value={this.state.form.phone} onChange={this.handleChange}/>
           </div>
-          <input type="submit" value="Keep me posted" />
+          <input className="form__submit" type="submit" value="Keep me posted" />
         </form>
         <Errors errors={this.state.errors} />
+        <Info info={this.state.info} />
       </div>
     )
   }
+}
+
+const Info = ({ info }) => {
+  if (!info) {
+    return null
+  }
+  return <div className="form__info">{info}</div>
 }
 
 const Errors = ({ errors }) => {

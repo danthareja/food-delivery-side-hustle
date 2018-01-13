@@ -3,9 +3,23 @@
 }
 
 .form__input {
-  
+
+}
+
+.form__submit {
+    width: 150px;
+    font-size: 14px;
+    margin: 15px 0px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px 0px;
+    background: #f6d16b;
 }
 
 .form__error {
   color: red;
+}
+
+.form__info {
+  color: chartreuse;
 }
