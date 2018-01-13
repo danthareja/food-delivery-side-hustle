@@ -1,17 +1,14 @@
-body, html {
-  height: 100%;
-  display: grid;
-}
+.app {
+  /*height: 100px;*/
+  width: 300px;
+  padding: 25px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
 
-body {
-  background-image: url("./man_burger.jpg"), url("./cat_burrito.gif");
-  background-position: left, right;
-  background-repeat: repeat-y, repeat-y;
-}
-
-
-main {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -220px 0 0 -170px;
 
   -webkit-transform: rotate(1deg);
   -moz-transform: rotate(1deg);
@@ -20,10 +17,10 @@ main {
   transform: rotate(1deg);
 }
 
-main div {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.app__header {
+
 }
 
+.app__content {
+
+}

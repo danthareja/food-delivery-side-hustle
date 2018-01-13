@@ -2,6 +2,7 @@
   "name": "client",
   "version": "1.0.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "promise-polyfill": "^7.0.0",
     "react": "^16.2.0",

@@ -3,7 +3,7 @@ require('dotenv').config()
 const app = require('./app')
 const db = require('./db')
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 
 db.connect(process.env.MONGODB_URI)
   .then(() => console.log(`Connected to MongoDB at ${process.env.MONGODB_URI}`))
