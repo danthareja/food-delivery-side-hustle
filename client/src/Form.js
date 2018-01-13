@@ -83,7 +83,7 @@ const Errors = ({ errors }) => {
     return null
   }
   return Object.keys(errors).map(key => {
-    return <div className="form__error">{key}: {errors[key]}</div>
+    return <div key={key} className="form__error">{key}: {errors[key]}</div>
   })
 }
 
