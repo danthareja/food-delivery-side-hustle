@@ -7,13 +7,21 @@
 }
 
 .form__submit {
-    width: 150px;
-    font-size: 14px;
-    margin: 15px 0px;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 10px 0px;
-    background: #f6d16b;
+  width: 150px;
+  font-size: 14px;
+  margin: 15px 0px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px 0px;
+  background-color: #f6d16b;
+}
+
+.form__submit:hover {
+  background-color: #f5dd9b;
+}
+
+.form__submit:active {
+  background-color: #f9ca48;
 }
 
 .form__error {
