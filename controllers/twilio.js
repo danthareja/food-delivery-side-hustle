@@ -7,10 +7,12 @@ const twilio = new Twilio(
 )
 
 module.exports.receive = async (req, res) => {
-  const twiml = new Twilio.twiml.MessagingResponse()
-  twiml.message('The Robots are coming! Head for the hills!')
-  res.writeHead(200, { 'Content-Type': 'text/xml' })
-  res.end(twiml.toString())
+  // const twiml = new Twilio.twiml.MessagingResponse()
+  // twiml.message('The Robots are coming! Head for the hills!')
+  // res.writeHead(200, { 'Content-Type': 'text/xml' })
+  // res.end(twiml.toString())
+  res.writeHead(200)
+  res.end()
 }
 
 module.exports.send = async (req, res) => {
