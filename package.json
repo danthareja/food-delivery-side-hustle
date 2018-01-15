@@ -8,7 +8,10 @@
     "yarn": "1.x"
   },
   "scripts": {
-    "postinstall": "cd client && yarn && yarn run build && cd ..",
+    "postinstall": "cd client && yarn && yarn build && cd ..",
+    "client": "cd client && yarn start",
+    "server": "nodemon index.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "start": "node index.js"
   },
   "dependencies": {
@@ -19,5 +22,9 @@
     "google-libphonenumber": "^3.0.10",
     "mongoose": "^4.13.9",
     "twilio": "^3.11.0"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1",
+    "nodemon": "^1.14.11"
   }
 }
