@@ -27,13 +27,10 @@ class Form extends Component {
     .then(res => res.json())
     .then(json => {
       if (json.errors) {
-        this.setState({
-          errors: json.errors
-        })
+        this.setErrors(json.errors)
       } else {
-        this.setState(Object.assign(INITIAL_STATE, {
-          info: 'Great success!'
-        }))
+        this.clearForm()
+        this.setInfo('Great success')
       }
     })
   }
@@ -44,6 +41,38 @@ class Form extends Component {
         [e.target.name]: e.target.value
       })
     })
+  }
+
+  clearForm = () => {
+    this.setState({
+      form: INITIAL_STATE.form
+    })
+  }
+
+  setErrors = (errors, delay = 3000) => {
+    if (!errors) {
+      return;
+    }
+
+    this.setState({ errors })
+    setTimeout(() => {
+      this.setState(Object.assign(INITIAL_STATE, {
+        errors: INITIAL_STATE.errors
+      }))
+    }, delay)
+  }
+
+  setInfo = (info, delay = 3000) => {
+    if (!info) {
+      return;
+    }
+
+    this.setState({ info })
+    setTimeout(() => {
+      this.setState(Object.assign(INITIAL_STATE, {
+        info: INITIAL_STATE.info
+      }))
+    }, delay)
   }
 
   render() {
