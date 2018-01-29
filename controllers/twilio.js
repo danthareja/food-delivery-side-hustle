@@ -24,12 +24,12 @@ module.exports.send = async (req, res) => {
     })
   }
 
-  const users = await db.models.User
+  const recipients = await db.models.User
     .find()
     .lean(true)
     .exec()
 
-  await Promise.all(users.map(user => {
+  await Promise.all(recipients.map(user => {
     return twilio.messages.create({
       body: message,
       to: user.phone,
@@ -37,5 +37,8 @@ module.exports.send = async (req, res) => {
     })
   }))
 
-  res.json({ error: null })
+  res.json({
+    errors: null,
+    recipients
+  })
 }
