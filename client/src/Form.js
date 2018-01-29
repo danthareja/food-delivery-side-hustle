@@ -27,10 +27,10 @@ class Form extends Component {
     .then(res => res.json())
     .then(json => {
       if (json.errors) {
-        this.setErrors(json.errors)
+        this.setTemporaryState('errors', json.errors)
       } else {
-        this.clearForm()
-        this.setInfo('Great success')
+        this.setInitialState('form')
+        this.setTemporaryState('info', 'Great success!')
       }
     })
   }
@@ -43,35 +43,22 @@ class Form extends Component {
     })
   }
 
-  clearForm = () => {
+  setInitialState = (key) => {
     this.setState({
-      form: INITIAL_STATE.form
+      [key]: INITIAL_STATE[key]
     })
   }
 
-  setErrors = (errors, delay = 3000) => {
-    if (!errors) {
+  setTemporaryState = (key, value, delay = 3000) => {
+    if (!key || !value) {
       return;
     }
 
-    this.setState({ errors })
+    this.setState({ [key]: value })
     setTimeout(() => {
-      this.setState(Object.assign(INITIAL_STATE, {
-        errors: INITIAL_STATE.errors
-      }))
-    }, delay)
-  }
-
-  setInfo = (info, delay = 3000) => {
-    if (!info) {
-      return;
-    }
-
-    this.setState({ info })
-    setTimeout(() => {
-      this.setState(Object.assign(INITIAL_STATE, {
-        info: INITIAL_STATE.info
-      }))
+      this.setState({
+        [key]: INITIAL_STATE[key]
+      })
     }, delay)
   }
 
